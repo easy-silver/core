@@ -13,9 +13,10 @@ import hello.core.order.OrderServiceImpl;
 public class AppConfig {
 
     /**
-     * 의존성 주입(DI)
+     * 의존 관계 주입(DI)
      */
     public MemberService memberService() {
+        //레포지토리 구현체를 MemoryMemberRepository로 지정
         return new MemberServiceImpl(new MemoryMemberRepository());
     }
 
