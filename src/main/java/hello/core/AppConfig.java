@@ -1,6 +1,8 @@
 package hello.core;
 
+import hello.core.discount.DiscountPolicy;
 import hello.core.discount.FixDiscountPolicy;
+import hello.core.member.MemberRepository;
 import hello.core.member.MemberService;
 import hello.core.member.MemberServiceImpl;
 import hello.core.member.MemoryMemberRepository;
@@ -12,17 +14,23 @@ import hello.core.order.OrderServiceImpl;
  */
 public class AppConfig {
 
-    /**
-     * 의존 관계 주입(DI)
-     */
     public MemberService memberService() {
         //레포지토리 구현체를 MemoryMemberRepository로 지정
-        return new MemberServiceImpl(new MemoryMemberRepository());
+        return new MemberServiceImpl(memberRepository());
+    }
+
+    //레포지토리의 구현체를 지정한다.
+    public MemberRepository memberRepository() {
+        return new MemoryMemberRepository();
     }
 
     public OrderService orderService() {
-        //서비스에서 사용할 레포지토리와 할인 정책의 구현체를 지정한다.
-        return new OrderServiceImpl(new MemoryMemberRepository(), new FixDiscountPolicy());
+        return new OrderServiceImpl(memberRepository(), discountPolicy());
+    }
+
+    //할인 정책의 구현체를 지정한다.
+    private DiscountPolicy discountPolicy() {
+        return new FixDiscountPolicy();
     }
 
 }
