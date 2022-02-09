@@ -1,5 +1,8 @@
 package hello.core.singleton;
 
+/**
+ * 스프링 빈은 항상 무상태(Stateless)로 유지해야 한다.
+ */
 public class SingletonService {
 
     //1. static 영역에 객체를 딱 1개만 생성해둔다.
