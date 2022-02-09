@@ -13,6 +13,7 @@ import org.springframework.context.annotation.Configuration;
 
 /**
  * 객체를 생성, 연결하는 책임을 갖는 클래스
+ * [중요!] Configuration 어노테이션을 제거하면 싱글톤이 보장되지 않으며, 스프링 컨테이너에 의해 관리되지 않는다.
  */
 @Configuration
 public class AppConfig {
